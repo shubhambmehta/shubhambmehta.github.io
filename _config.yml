@@ -102,17 +102,17 @@ analytics:
 # Site Author
 author:
   name             : "Shubham Mehta"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/images/bio.jpg"
   bio              : "Data Science Portfolio"
   location         : "Bengaluru, India"
   email            : "shubham.b.mehta@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: mailto:your.name@email.com
+      url: "mailto:shubham.b.mehta@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
+      url: "https://www.linkedin.com/in/shubham-mehta13/"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       # url: "https://twitter.com/"
@@ -294,4 +294,4 @@ defaults:
     values:
       layout: single
       author_profile: true
-      
+
