@@ -1,10 +1,10 @@
 ---
-title: "Machine Learning Project: Perceptron"
-date: 2018-01-28
-tags: [machine learning, data science, neural network]
-header:
+title: "Recommender System: Pleasant Discovery Content Filtering Algorithm"
+date: 2018-09-28
+tags: [machine learning, recommendation engine, data science, content filtering]
+header: 
   image: "/images/perceptron/percept.jpg"
-excerpt: "Machine Learning, Perceptron, Data Science"
+excerpt: "Machine Learning, Recommendation System, Data Science"
 mathjax: "true"
 ---
 
