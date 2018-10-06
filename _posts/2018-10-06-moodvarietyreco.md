@@ -102,7 +102,47 @@ So, for example, it has been able to extract the chief keyword for movie *Nixon*
 Next, the aim is to find a similarity score between different chief keywords and then use it for finding similarity scores between movies that will then be used for content filtering. Similarity scores have a very abstract meaning here, we are finding how much romance is similar to war, or action to drama etc. For this, we use the technique introduce by Ted Dunning in this [link](http://tdunning.blogspot.com/2008/03/surprise-and-coincidence.html)
 
 The code steps are as follows:
--
+
+1. Create a user cross keyword matrix where value in each cell is cumulative sum of the rating given by that user to that chief keyword (or the movie that has that chief keyword) across all the movies rated by that user. 
+
+```python
+
+all_chief_keywords = df_movies['chief_keyword'].unique()
+df_uxk = pd.DataFrame(0, index = df_ratings['userId'].unique(), columns = all_chief_keywords)
+
+start = time.time()
+for row in df_ratings.itertuples(index=True, name='Pandas'):
+    this_movie_chief_keyword = df_movies.loc[getattr(row, 'movieId'), 'chief_keyword']
+    this_user_this_movie_rating = getattr(row, 'rating')
+    this_user_id = getattr(row, 'userId')
+    df_uxk.loc[this_user_id,this_movie_chief_keyword] += this_user_this_movie_rating
+end = time.time()
+
+print 'Time Taken:  '+ str(end-start)
+
+```
+
+2. Create a co-rating matrix where value in each cell is the cumulative sum of the pair wise minimum of all keyword combinations for each user across all users. It can best be understood by code: 
+
+```python 
+
+nok = len(all_chief_keywords)
+df_co_rating = pd.DataFrame(0, index = all_chief_keywords, columns = all_chief_keywords)
+
+start = time.time()
+for index,row in df_uxk.iterrows():
+    print index
+    for i, first_keyword in enumerate(all_chief_keywords):
+        for j in range(i+1,nok):
+            second_keyword = all_chief_keywords[j]
+            df_co_rating.loc[first_keyword,second_keyword] += min(row[first_keyword],row[second_keyword])
+            df_co_rating.loc[second_keyword,first_keyword] = df_co_rating.loc[first_keyword,second_keyword]
+         
+
+end = time.time()
+print 'Time Taken:  '+ str(end-start)       
+    
+```
 
 And here's some *italics*
 
