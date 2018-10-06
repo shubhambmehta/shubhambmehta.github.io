@@ -189,6 +189,13 @@ I am very pleased with the results for the long tail keywords. But, for keywords
 
 The results look extremely fascinating!
 
+Now, lets go ahead and build the actual hybrid recommender and compare its results with only collaborative filtering recommender. Lets create a similarity matrix for movies using our chief keywords similarity matrix:
+
+```python
+
+
+
+```
 
 
 
