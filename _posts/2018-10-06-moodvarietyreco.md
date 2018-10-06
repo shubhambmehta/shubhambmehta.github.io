@@ -15,7 +15,7 @@ mathjax: "true"
 
 ### H3 Heading
 
-I wanted to get some recommendations for movies that related to my current mood, not exactly the same, as the same stuff repeated again gets boring. So, I decided why not try to make one! It led to a discovery of amazing insights like what is nearer to children, christmas or superhero? So, fasten your seat belts!
+I wanted to get some recommendations for movies that related to my current mood, not exactly the same, as the same stuff repeated again gets boring. So, I decided why not try to make one! It led to a discovery of amazing insights like what is nearer to children, christmas or superhero?
 
 The system is a hybrid one with first content filtering, and then collaborative filtering using Singular Value Decomposition using surprise package in Python. The collaborative filtering is a standard one, but have tweaked on with the content filtering algorithm. The main motive was to have content filter that would not again bam with the exact same type of content, but a pleasant variation of it.
 
