@@ -107,9 +107,9 @@ author:
   location         : "Bengaluru, India"
   email            : "shubham.b.mehta@gmail.com"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:shubham.b.mehta@gmail.com"
+    #- label: "Email"
+      #icon: "fas fa-fw fa-envelope-square"
+      #url: "mailto:shubham.b.mehta@gmail.com"
     - label: "Linkedin"
       icon: "fas fa-fw fa-link"
       url: "https://www.linkedin.com/in/shubham-mehta13/"
