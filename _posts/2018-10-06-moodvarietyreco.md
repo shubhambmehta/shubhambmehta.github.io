@@ -219,7 +219,33 @@ Output:
 Now, lets fetch all the superhero movies from the dataset: 
 <img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies8.png" alt="movie_lens_small">
 
+Now, lets create a hybrid recommender that first fetches the top 25 movies according to the similarity between chief keywords, and then applies collaborative filtering to get us the top ten. 
 
+```python
+
+
+title_to_id = df_movies.reset_index()[['movieId', 'title']].set_index('title')
+
+def hybrid(userId, title):
+    this_movie_id = title_to_id.loc[title]
+    all_movieids = list(df_movies.index)
+    sim_scores_series = pd.Series(0,index = all_movieids)
+    for movieid in all_movieids:
+        sim_scores_series.loc[movieid] = df_sim_chief_keyword.loc[df_movies.loc[this_movie_id,'chief_keyword'],df_movies.loc[movieid,'chief_keyword']].iloc[0]
+        
+    top_25_ids = sim_scores_series.sort_values(ascending=False)[:26].index
+    df_movies_top25 = df_movies.loc[top_25_ids].reset_index()
+    
+    df_movies_top25['est'] = df_movies_top25['index'].apply(lambda x: svd.predict(userId,x).est)
+    
+    #Sort the movies in decreasing order of predicted rating
+    df_movies_top25 = df_movies_top25.sort_values('est', ascending=False)
+    
+    #Return the top 10 movies as recommendations
+    return df_movies_top25.head(10)
+
+hybrid(1, 'Spider-Man (2002)')
+```
 
 And here's some *italics*
 
