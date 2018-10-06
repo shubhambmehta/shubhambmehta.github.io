@@ -48,7 +48,7 @@ df_movies.set_index('movieId', inplace= True)
 ```
 The df_movies dataframe now looks like this: 
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies1.png" alt="linearly separable data">
+<img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies2.png" alt="linearly separable data">
 
 
 And here's some *italics*
