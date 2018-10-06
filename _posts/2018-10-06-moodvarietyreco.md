@@ -175,6 +175,21 @@ A portion of the 120x120 similarity matrix look like this:
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies6.png" alt="movie_lens_small">
 
+I am very pleased with the results for the long tail keywords. But, for keywords with very high frequency the results can be improved, and further work needs to be done. Five most similar chief keywords for some in order:
+- highschool: music, christmas, willferrell, england, spoof
+- mystery: adventure, drama, fantasy, sci-fi, war
+- politics: prostitution, wedding, journalism, shakespeare, remake
+- children: musical, christmas, western, horror, animation
+- revenge: twistending, psychology, heartwarming, stephenking, martialarts
+- leonardodicaprio: socialcommentary, drugs, stylized, kidnapping, cinematography
+- superhero: timetravel, aliens, classic, western, revenge
+- india: religion, adultery, divorce, moviebusiness, screwball
+- creepy: serialkiller, depressing, kidnapping, philosophical, leonardodicaprio
+
+The results look extremely fascinating!
+
+
+
 
 And here's some *italics*
 
