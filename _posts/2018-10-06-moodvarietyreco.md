@@ -6,6 +6,8 @@ header:
   image: "/images/moodvarietyreco/Untitled design (3).png"
 excerpt: "Machine Learning, Recommendation System, Hybrid"
 mathjax: "true"
+author_profile: false
+
 ---
 
 # H1 Heading
