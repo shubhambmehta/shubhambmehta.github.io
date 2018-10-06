@@ -185,6 +185,7 @@ I am very pleased with the results for the long tail keywords. But, for keywords
 - superhero: timetravel, aliens, classic, western, revenge
 - india: religion, adultery, divorce, moviebusiness, screwball
 - creepy: serialkiller, depressing, kidnapping, philosophical, leonardodicaprio
+- satire: witty, willferrell, twistending, funny, revenge
 
 The results look extremely fascinating!
 
