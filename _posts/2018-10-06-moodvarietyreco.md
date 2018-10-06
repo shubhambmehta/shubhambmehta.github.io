@@ -196,7 +196,7 @@ movieids = df_movies.index
 df_sim_movies = pd.DataFrame(index = movieids, columns = movieids)
 for movieid1 in movieids:
     for movieid2 in movieids:
-        df_sim_movies[movieid1][movieid2]=df_sim_chief_keyword.loc[df_movies.loc[movieid1,'chief_keyword'],df_movies.loc[movieid2,'chief_keyword']]
+        df_sim_movies.loc[movieid1,movieid2]=df_sim_chief_keyword.loc[df_movies.loc[movieid1,'chief_keyword'],df_movies.loc[movieid2,'chief_keyword']]
 ```
 Next, lets import some modules from the surprise package for recommendation system in python. We will use the svd algorithm introduced by Simon Funk during Netflix challenge for implementing collaborative filtering. 
 
