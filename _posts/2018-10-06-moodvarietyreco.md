@@ -97,6 +97,13 @@ The df_movies dataframe now looks like this:
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies5.png" alt="movie_lens_small">
 
+So, for example, it has been able to extract the chief keyword for movie *Nixon* as politics, chief keyword Mafia for movie *Casino* etc. 
+
+Next, the aim is to find a similarity score between different chief keywords and then use it for finding similarity scores between movies that will then be used for content filtering. Similarity scores have a very abstract meaning here, we are finding how much romance is similar to war, or action to drama etc. For this, we use the technique introduce by Ted Dunning in this [link](http://tdunning.blogspot.com/2008/03/surprise-and-coincidence.html)
+
+The code steps are as follows:
+-
+
 And here's some *italics*
 
 Here's some **bold** text.
