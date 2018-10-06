@@ -242,7 +242,6 @@ hybrid(1, 'Spider-Man (2002)')
 ```
 Output:
 <img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies9.png" alt="movie_lens_small">
-And here's some *italics*
 
 Here are my observations:
 - The first list gives too much variety, it doesn't match my current mood.
