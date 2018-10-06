@@ -246,7 +246,7 @@ Output:
 Here are my observations:
 - The first list gives too much variety, it doesn't match my current mood.
 - The second list is too predicatble and boring. Mood wants to change gradually. 
-- The third list looks very interesting! It has Terminator, Start Trek etc. If we watch the trailer of these movies most people will be able to say that they are similar. It tries to give a balance between the mood delta and variety. 
+- The third list looks very interesting! It has Terminator, Star Trek etc. If we watch the trailer of these movies most people will be able to say that they are similar. It tries to give a balance between the mood delta and variety. 
 
 Hope you enjoyed! I haven't watched Star Trek yet! See you again!
 
