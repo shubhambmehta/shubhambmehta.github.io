@@ -50,7 +50,7 @@ The df_movies dataframe now looks like this:
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies2.png" alt="movie_lens_small">
 
-The tags and genres have been combined into keywords for each movie, not differentiating between the two. Now, the aim is to find the chief keyword of each movie: **the keyword that has the most predictive power to determine the mean rating of that movie by all users**. 
+The tags and genres have been combined into keywords for each movie, not differentiating between the two. Now, the aim is to find the chief keyword of each movie: **the keyword that has the most predictive power to determine the mean rating of that movie by all users**. It is very tricky to do this. There can be various methods to do this, and I need to improve the model on this. For now, I am just using the feature importance of a decision tree regressor divided by the number of movies in which that keyword is present which I think is also giving reasonable results. 
 
 For that, first lets create a movies cross keywords dataframe, where each row is a movie and each column is a keyword, and the values are binary indicators indicating whether that keyword is present in that movie or not. We will also need to read the ratings data and get the mean_rating for each movie.
 
@@ -78,7 +78,24 @@ We have dropped the rare keywords that appear in less than 6 movies. The df_mxk 
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies4.png" alt="movie_lens_small">
 
+Next, lets use the Decision Tree Regressor and find the chief keyword of each movie. 
 
+```python 
+from sklearn.tree import DecisionTreeRegressor
+
+reg = DecisionTreeRegressor()
+X = df_mxk.drop('mean_rating', axis = 1).as_matrix()
+y = df_mxk['mean_rating'].as_matrix()
+
+reg.fit(X,y)
+keyword_scores = pd.Series(reg.feature_importances_ , index = df_mxk.drop('mean_rating', axis=1).columns)
+keyword_frequency = df_mxk.sum()
+
+df_movies['chief_keyword'] = df_movies['keywords'].apply(lambda x: (keyword_scores[x]/keyword_frequency).idxmax())
+```
+The df_movies dataframe now looks like this: 
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies5.png" alt="movie_lens_small">
 
 And here's some *italics*
 
