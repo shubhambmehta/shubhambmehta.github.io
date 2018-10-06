@@ -144,6 +144,38 @@ print 'Time Taken:  '+ str(end-start)
     
 ```
 
+3. Create a similarity matrix using Ted Dunning method:
+
+```python
+import scipy.stats
+
+
+def sim_matrix(co): # returns the similarity matrix for the given co-occurence matrix
+    chief_keywords = co.columns
+    df_sim = pd.DataFrame(index = co.index, columns = co.columns)
+    f = co.sum()
+    n = sum(f)
+
+    for first_chief_keyword in chief_keywords:
+        for second_chief_keyword in chief_keywords:
+            k11 = co.loc[first_chief_keyword][second_chief_keyword]
+            k12 = f[first_chief_keyword]-k11
+            k21 = f[second_chief_keyword]-k11
+            k22 = n - k12 - k21 + k11
+            df_sim.loc[first_chief_keyword][second_chief_keyword], p, dof, expctd= scipy.stats.chi2_contingency([[k11,k12],[k21,k22]], lambda_="log-likelihood")
+            if ((k11/k21) < f[first_chief_keyword]/(n-f[first_chief_keyword])):
+                df_sim.loc[first_chief_keyword][second_chief_keyword] = 0
+                
+    return df_sim
+
+df_sim_chief_keyword = sim_matrix(df_co_rating)
+```
+
+A portion of the 120x120 similarity matrix look like this:
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies6.png" alt="movie_lens_small">
+
+
 And here's some *italics*
 
 Here's some **bold** text.
