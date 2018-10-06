@@ -6,7 +6,6 @@ header:
   image: "/images/moodvarietyreco/Untitled design (3).png"
 excerpt: "Machine Learning, Recommendation System, Hybrid"
 mathjax: "true"
-author_profile: false
 
 ---
 
@@ -16,13 +15,20 @@ author_profile: false
 
 ### H3 Heading
 
-I wanted to get some recommendations for movies that related to my current mood, not exactly the same, as the same stuff repeated again gets boring.So, I decided why not try to make one! Doing so, I entered into the world of surprising insights like...  . 
+I wanted to get some recommendations for movies that related to my current mood, not exactly the same, as the same stuff repeated again gets boring. So, I decided why not try to make one! Doing so, I entered into the world of surprising insights like...  . 
 
 The system is a hybrid one with first content filtering, and then collaborative filtering using Singular Value Decomposition using surprise package in Python. The collaborative filtering is a standard one, but I have played on with the content filtering algorithm. The main motive was to have content filter that would ................
 
-The data I used was the MovieLens small data available here ..... All the code is available at ..... 
+The data I used was the MovieLens small data available at this [link](https://grouplens.org/datasets/movielens/). It has around  100,000 ratings and 3,600 tag applications applied to 9,000 movies by 600 users. 
 
-So, lets get started and read the data
+All the code is available at this [link]().
+
+The data has 3 files: 
+-movies.csv: It contains the fields movieId, title, and genres of the movie. 
+-tags.csv: It contains userId, movieId, and tag.
+-ratings.csv: It contains userId, movieId, and rating. 
+
+First, lets get started, read the tags and movies data, merge to put things together, in the code below: 
 
 ```python
 import pandas as pd
@@ -39,11 +45,11 @@ df_movies['keywords'] = df_movies['genres']+df_movies['tags']
 df_movies['keywords'] = df_movies['keywords'].apply(lambda x: set([str.lower(i.replace(" ", "")) for i in x]))
 df_movies.set_index('movieId', inplace= True)
 
-all_keywords = set()
-for this_movie_keywords in df_movies['keywords']:
-    all_keywords = all_keywords.union(this_movie_keywords)
-
 ```
+The df_movies dataframe now looks like this: 
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies1.png" alt="linearly separable data">
+
 
 And here's some *italics*
 
