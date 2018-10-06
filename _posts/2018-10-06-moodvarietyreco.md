@@ -15,7 +15,7 @@ The system is a hybrid one with first content filtering, and then collaborative 
 
 The data used is the MovieLens small data available at this [link](https://grouplens.org/datasets/movielens/). It has around  100,000 ratings and 3,600 tag applications applied to 9,000 movies by 600 users. 
 
-All the code is available at this [link]().
+All the code is available at my GitHub [profile](https://github.com/shubhambmehta/moodvarietyrecosys).
 
 The data has 3 files: 
 - movies.csv: It contains the fields movieId, title, and genres of the movie. 
