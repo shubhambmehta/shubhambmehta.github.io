@@ -189,16 +189,7 @@ I am very pleased with the results for the long tail keywords. But, for keywords
 
 The results look extremely fascinating!
 
-Now, lets go ahead and build the actual hybrid recommender and compare its results with only collaborative filtering recommender. Lets create a similarity matrix for movies using our similarity matrix for chief keywords:
-
-```python
-movieids = df_movies.index
-df_sim_movies = pd.DataFrame(index = movieids, columns = movieids)
-for movieid1 in movieids:
-    for movieid2 in movieids:
-        df_sim_movies.loc[movieid1,movieid2]=df_sim_chief_keyword.loc[df_movies.loc[movieid1,'chief_keyword'],df_movies.loc[movieid2,'chief_keyword']]
-```
-Next, lets import some modules from the surprise package for recommendation system in python. We will use the svd algorithm introduced by Simon Funk during Netflix challenge for implementing collaborative filtering. 
+Now, lets go ahead and build the actual hybrid recommender and compare its results with only collaborative filtering recommender. Surprise package is the sci-kit learn for recommender systems. Lets import some modules from the surprise package and train the model on the ratings data. We will use the SVD (Singular Value Decomposition) algorithm introduced by Simon Funk during Netflix challenge for implementing collaborative filtering. 
 
 ```python 
 
@@ -212,6 +203,22 @@ trainset = data.build_full_trainset()
 svd.train(trainset)
 
 ```
+
+Now, lets generate predictions for user with *userId 1* for the movie *Spider-Man (2002)*. First, lets get the top ten recommendations from only collaborative filtering: 
+
+```python
+def collaborative(userId):
+    df_movies['est'] = df_movies['index'].apply(lambda x: svd.predict(userId,x).est)
+    return df_movies.sort_values('est', ascending=False).head(10)
+
+collaborative(1)
+```
+Output: 
+<img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies7.png" alt="movie_lens_small">
+
+Now, lets fetch all the superhero movies from the dataset: 
+<img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies8.png" alt="movie_lens_small">
+
 
 
 And here's some *italics*
