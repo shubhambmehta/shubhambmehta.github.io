@@ -24,9 +24,9 @@ The data I used was the MovieLens small data available at this [link](https://gr
 All the code is available at this [link]().
 
 The data has 3 files: 
--movies.csv: It contains the fields movieId, title, and genres of the movie. 
--tags.csv: It contains userId, movieId, and tag.
--ratings.csv: It contains userId, movieId, and rating. 
+- movies.csv: It contains the fields movieId, title, and genres of the movie. 
+- tags.csv: It contains userId, movieId, and tag.
+- ratings.csv: It contains userId, movieId, and rating. 
 
 First, lets get started, read the tags and movies data, merge to put things together, in the code below: 
 
