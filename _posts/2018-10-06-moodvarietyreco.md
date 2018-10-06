@@ -15,11 +15,11 @@ mathjax: "true"
 
 ### H3 Heading
 
-I wanted to get some recommendations for movies that related to my current mood, not exactly the same, as the same stuff repeated again gets boring. So, I decided why not try to make one! Doing so, I entered into the world of surprising insights like...  . 
+I wanted to get some recommendations for movies that related to my current mood, not exactly the same, as the same stuff repeated again gets boring. So, I decided why not try to make one! It led to a discovery of amazing insights like what is nearer to children, christmas or superhero?  
 
-The system is a hybrid one with first content filtering, and then collaborative filtering using Singular Value Decomposition using surprise package in Python. The collaborative filtering is a standard one, but I have played on with the content filtering algorithm. The main motive was to have content filter that would ................
+The system is a hybrid one with first content filtering, and then collaborative filtering using Singular Value Decomposition using surprise package in Python. The collaborative filtering is a standard one, but I have played on with the content filtering algorithm. The main motive was to have content filter that would not again bam me with the exact same type of content, but a pleasant variation of it.
 
-The data usd is the MovieLens small data available at this [link](https://grouplens.org/datasets/movielens/). It has around  100,000 ratings and 3,600 tag applications applied to 9,000 movies by 600 users. 
+The data used is the MovieLens small data available at this [link](https://grouplens.org/datasets/movielens/). It has around  100,000 ratings and 3,600 tag applications applied to 9,000 movies by 600 users. 
 
 All the code is available at this [link]().
 
@@ -171,7 +171,7 @@ def sim_matrix(co): # returns the similarity matrix for the given co-occurence m
 df_sim_chief_keyword = sim_matrix(df_co_rating)
 ```
 
-A portion of the 120x120 similarity matrix look like this:
+A portion of the 120x120 similarity matrix looks like this:
 
 <img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies6.png" alt="movie_lens_small">
 
@@ -189,14 +189,29 @@ I am very pleased with the results for the long tail keywords. But, for keywords
 
 The results look extremely fascinating!
 
-Now, lets go ahead and build the actual hybrid recommender and compare its results with only collaborative filtering recommender. Lets create a similarity matrix for movies using our chief keywords similarity matrix:
+Now, lets go ahead and build the actual hybrid recommender and compare its results with only collaborative filtering recommender. Lets create a similarity matrix for movies using our similarity matrix for chief keywords:
 
 ```python
+movieids = df_movies.index
+df_sim_movies = pd.DataFrame(index = movieids, columns = movieids)
+for movieid1 in movieids:
+    for movieid2 in movieids:
+        df_sim_movies[movieid1][movieid2]=df_sim_chief_keyword.loc[df_movies.loc[movieid1,'chief_keyword'],df_movies.loc[movieid2,'chief_keyword']]
+```
+Next, lets import some modules from the surprise package for recommendation system in python. We will use the svd algorithm introduced by Simon Funk during Netflix challenge for implementing collaborative filtering. 
 
+```python 
 
+from surprise import SVD, Reader, Dataset
+
+reader = Reader()
+data = Dataset.load_from_df(df_ratings[['userId', 'movieId', 'rating']], reader)
+data.split(n_folds=5)
+svd = SVD()
+trainset = data.build_full_trainset()
+svd.train(trainset)
 
 ```
-
 
 
 And here's some *italics*
