@@ -19,7 +19,7 @@ I wanted to get some recommendations for movies that related to my current mood,
 
 The system is a hybrid one with first content filtering, and then collaborative filtering using Singular Value Decomposition using surprise package in Python. The collaborative filtering is a standard one, but I have played on with the content filtering algorithm. The main motive was to have content filter that would ................
 
-The data I used was the MovieLens small data available at this [link](https://grouplens.org/datasets/movielens/). It has around  100,000 ratings and 3,600 tag applications applied to 9,000 movies by 600 users. 
+The data usd is the MovieLens small data available at this [link](https://grouplens.org/datasets/movielens/). It has around  100,000 ratings and 3,600 tag applications applied to 9,000 movies by 600 users. 
 
 All the code is available at this [link]().
 
@@ -48,7 +48,36 @@ df_movies.set_index('movieId', inplace= True)
 ```
 The df_movies dataframe now looks like this: 
 
-<img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies2.png" alt="linearly separable data">
+<img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies2.png" alt="movie_lens_small">
+
+The tags and genres have been combined into keywords for each movie, not differentiating between the two. Now, the aim is to find the chief keyword of each movie: **the keyword that has the most predictive power to determine the mean rating of that movie by all users**. 
+
+For that, first lets create a movies cross keywords dataframe, where each row is a movie and each column is a keyword, and the values are binary indicators indicating whether that keyword is present in that movie or not. We will also need to read the ratings data and get the mean_rating for each movie.
+
+```python
+df_ratings = pd.read_csv('data/ratings.csv')
+
+all_keywords = set()
+for this_movie_keywords in df_movies['keywords']:
+    all_keywords = all_keywords.union(this_movie_keywords)
+
+df_mxk = pd.DataFrame(0, index = df_movies.reset_index()['movieId'].unique(), columns = all_keywords)
+df_mxk['mean_rating'] = df_ratings.groupby('movieId')['rating'].mean()
+
+for index,row in df_mxk.iterrows():
+    df_mxk.loc[index,df_movies.loc[index]['keywords']] = 1
+
+df_mxk['mean_rating'].fillna(df_mxk['mean_rating'].mean(), inplace=True)
+df_mxk = df_mxk.loc[:,df_mxk.sum() > 5]
+
+```
+
+We have dropped the rare keywords that appear in less than 6 movies. The df_mxk dataframe looks like this: 
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies3.png" alt="movie_lens_small">
+
+<img src="{{ site.url }}{{ site.baseurl }}/images/moodvarietyreco/movies4.png" alt="movie_lens_small">
+
 
 
 And here's some *italics*
