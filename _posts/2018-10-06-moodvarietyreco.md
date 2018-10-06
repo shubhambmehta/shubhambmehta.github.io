@@ -3,7 +3,7 @@ title: "Mood and Variety: Recommendation System"
 date: 2018-09-28
 tags: [machine learning, recommendation engine, data science, content filtering, collaborative filtering, singular value decomposition]
 header: 
-  image: "/images/moodvarietyreco/Untitled design (2).png"
+  image: "/images/moodvarietyreco/Untitled design (3).png"
 excerpt: "Machine Learning, Recommendation System, Hybrid"
 mathjax: "true"
 ---
