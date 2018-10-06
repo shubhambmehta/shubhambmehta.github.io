@@ -122,7 +122,7 @@ print 'Time Taken:  '+ str(end-start)
 
 ```
 
-2. Create a co-rating matrix where value in each cell is the cumulative sum of the pair wise minimum of all keyword combinations for each user across all users. It can best be understood by code: 
+2.Create a co-rating matrix where value in each cell is the cumulative sum of the pair wise minimum of all keyword combinations for each user across all users. It can best be understood by code: 
 
 ```python 
 
@@ -144,7 +144,7 @@ print 'Time Taken:  '+ str(end-start)
     
 ```
 
-3. Create a similarity matrix using Ted Dunning method:
+3.Create a similarity matrix using Ted Dunning method:
 
 ```python
 import scipy.stats
